@@ -64,6 +64,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8B06AC3E1C02BF78005BBA0E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8B62CAFC1C02AE080029A601 /* LoginViewController.h */,
+				8B62CAFD1C02AE080029A601 /* LoginViewController.m */,
+				8B06AC3B1C02BEE9005BBA0E /* DevicesViewController.h */,
+				8B06AC3C1C02BEE9005BBA0E /* DevicesViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		8B62CAEA1C02AE080029A601 = {
 			isa = PBXGroup;
 			children = (
@@ -87,10 +98,7 @@
 			children = (
 				8B62CAF91C02AE080029A601 /* AppDelegate.h */,
 				8B62CAFA1C02AE080029A601 /* AppDelegate.m */,
-				8B62CAFC1C02AE080029A601 /* LoginViewController.h */,
-				8B62CAFD1C02AE080029A601 /* LoginViewController.m */,
-				8B06AC3B1C02BEE9005BBA0E /* DevicesViewController.h */,
-				8B06AC3C1C02BEE9005BBA0E /* DevicesViewController.m */,
+				8B06AC3E1C02BF78005BBA0E /* Controllers */,
 				8B62CAFF1C02AE080029A601 /* Main.storyboard */,
 				8B62CB021C02AE080029A601 /* Assets.xcassets */,
 				8B62CB041C02AE080029A601 /* LaunchScreen.storyboard */,
@@ -142,6 +150,7 @@
 				TargetAttributes = {
 					8B62CAF21C02AE080029A601 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 54JDK55DR5;
 					};
 				};
 			};
@@ -345,6 +354,7 @@
 			baseConfigurationReference = 6F40FAD8908D09CB31CC0AD8 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = TurnBack/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ezefranca.com.TurnBack;
@@ -357,6 +367,7 @@
 			baseConfigurationReference = F0E385A89626ACC2373F8BC3 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = TurnBack/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ezefranca.com.TurnBack;
