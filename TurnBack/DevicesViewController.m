@@ -8,6 +8,7 @@
 
 #import "DevicesViewController.h"
 #import "LGBluetooth.h"
+#import "FABluetoothManager.h"
 
 @interface DevicesViewController ()
 
@@ -20,7 +21,7 @@
     // Initialization of CentralManager
     [LGCentralManager sharedInstance];
     // Scaning 4 seconds for peripherals
-    [[LGCentralManager sharedInstance] scanForPeripheralsByInterval:4
+    [[LGCentralManager sharedInstance] scanForPeripheralsByInterval:10
                                                          completion:^(NSArray *peripherals)
      {
          // If we found any peripherals sending to test
@@ -28,6 +29,11 @@
              [self testPeripheral:peripherals[0]];
          }
      }];
+    
+//    FABluetoothManager *manager = [FABluetoothManager manager];
+//    [manager startSearchingForPeriphetals:^(NSArray *peripherals, NSError *error) {
+//        NSLog(@"%@",peripherals);
+//    } services:nil];
 }
 
 - (void)didReceiveMemoryWarning {

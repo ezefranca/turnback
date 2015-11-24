@@ -26,6 +26,7 @@ PODS:
   - Bolts/AppLinks (1.5.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.5.0)
+  - FABluetoothManager (0.0.1)
   - FBSDKCoreKit (4.8.0):
     - Bolts (~> 1.1)
     - FBSDKCoreKit/arc (= 4.8.0)
@@ -44,6 +45,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - FABluetoothManager
   - FBSDKCoreKit
   - FBSDKLoginKit
   - LGBluetooth
@@ -52,9 +54,10 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
+  FABluetoothManager: ab5437f95c51ba67a259cdcce904889cb18d0289
   FBSDKCoreKit: 66a935d17b6e00b6b64e604f2eb9b72c9ab7deb8
   FBSDKLoginKit: d893fcbb98d854496925e9ff73c67b896982d3c4
   LGBluetooth: 8407d2de27bcbd4a9e11243290b928293ffa8881
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
 
-COCOAPODS: 0.39.0
+COCOAPODS: 0.38.2
