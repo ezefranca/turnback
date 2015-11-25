@@ -15,6 +15,10 @@
 		8B62CB011C02AE080029A601 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B62CAFF1C02AE080029A601 /* Main.storyboard */; };
 		8B62CB031C02AE080029A601 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B62CB021C02AE080029A601 /* Assets.xcassets */; };
 		8B62CB061C02AE080029A601 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B62CB041C02AE080029A601 /* LaunchScreen.storyboard */; };
+		8BFBFD9A1C051798002698FC /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BFBFD991C051798002698FC /* CoreBluetooth.framework */; };
+		8BFBFD9C1C051DFB002698FC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BFBFD9B1C051DFB002698FC /* CoreLocation.framework */; };
+		8BFBFD9E1C051E27002698FC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BFBFD9D1C051E27002698FC /* SystemConfiguration.framework */; };
+		8BFBFDA11C052AD8002698FC /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFBFDA01C052AD8002698FC /* DetailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,11 @@
 		8B62CB021C02AE080029A601 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B62CB051C02AE080029A601 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B62CB071C02AE080029A601 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8BFBFD991C051798002698FC /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		8BFBFD9B1C051DFB002698FC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		8BFBFD9D1C051E27002698FC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		8BFBFD9F1C052AD8002698FC /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
+		8BFBFDA01C052AD8002698FC /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		F0E385A89626ACC2373F8BC3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -40,6 +49,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BFBFD9E1C051E27002698FC /* SystemConfiguration.framework in Frameworks */,
+				8BFBFD9C1C051DFB002698FC /* CoreLocation.framework in Frameworks */,
+				8BFBFD9A1C051798002698FC /* CoreBluetooth.framework in Frameworks */,
 				28435B9928FD35AD24C38928 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,6 +62,9 @@
 		2A2B3C868B0D7E158A87C7B5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8BFBFD9D1C051E27002698FC /* SystemConfiguration.framework */,
+				8BFBFD9B1C051DFB002698FC /* CoreLocation.framework */,
+				8BFBFD991C051798002698FC /* CoreBluetooth.framework */,
 				1CB246738F38E929702F7B75 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -71,6 +86,8 @@
 				8B62CAFD1C02AE080029A601 /* LoginViewController.m */,
 				8B06AC3B1C02BEE9005BBA0E /* DevicesViewController.h */,
 				8B06AC3C1C02BEE9005BBA0E /* DevicesViewController.m */,
+				8BFBFD9F1C052AD8002698FC /* DetailsViewController.h */,
+				8BFBFDA01C052AD8002698FC /* DetailsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -239,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B06AC3D1C02BEE9005BBA0E /* DevicesViewController.m in Sources */,
+				8BFBFDA11C052AD8002698FC /* DetailsViewController.m in Sources */,
 				8B62CAFE1C02AE080029A601 /* LoginViewController.m in Sources */,
 				8B62CAFB1C02AE080029A601 /* AppDelegate.m in Sources */,
 				8B62CAF81C02AE080029A601 /* main.m in Sources */,
@@ -356,6 +374,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = TurnBack/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ezefranca.com.TurnBack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -369,6 +388,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = TurnBack/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ezefranca.com.TurnBack;
 				PRODUCT_NAME = "$(TARGET_NAME)";

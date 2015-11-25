@@ -7,38 +7,124 @@
 //
 
 #import "DevicesViewController.h"
-#import "LGBluetooth.h"
+#import "DetailsViewController.h"
+#import <CoreBluetooth/CoreBluetooth.h>
+#import <CoreLocation/CoreLocation.h>
+#include <math.h>
 
-@interface DevicesViewController ()
+@interface DevicesViewController () <CBCentralManagerDelegate,CBPeripheralDelegate,CBPeripheralManagerDelegate,UITableViewDataSource,UITableViewDelegate>
+{
+    CBCentralManager *mgr;
+    CBPeripheralManager *manager;
+    int devices;
+    
+}
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
 @implementation DevicesViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-    // Initialization of CentralManager
-    [LGCentralManager sharedInstance];
-    // Scaning 4 seconds for peripherals
-    [[LGCentralManager sharedInstance] scanForPeripheralsByInterval:4
-                                                         completion:^(NSArray *peripherals)
-     {
-         // If we found any peripherals sending to test
-         if (peripherals.count) {
-             [self testPeripheral:peripherals[0]];
-         }
-     }];
+    devices = 0;
+    mgr = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    manager = [[CBPeripheralManager alloc]initWithDelegate:self queue:nil];
+    manager.delegate = self;
+    mgr.delegate = self;
+    self.tableView.backgroundColor = [UIColor clearColor];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSNumber *)calculateDistance: (NSNumber*)rssi {
+    
+    float txPower = -59; //hard coded power value. Usually ranges between -59 to -65
+    
+    if ([rssi floatValue] == 0) {
+        NSLog(@"DISTANCIA: %f", [rssi floatValue]);
+        return [NSNumber numberWithFloat:-1.0];
+    }
+    
+    float ratio = [rssi floatValue] * (1.0/txPower);
+    if (ratio < 1.0) {
+         NSLog(@"DISTANCIA: %f", [[NSNumber numberWithFloat:pow(ratio, 10)]floatValue] / 3.2808);
+        return [NSNumber numberWithFloat:pow(ratio, 10)];
+    }
+    else {
+        float distance =  (0.89976)* pow(ratio,7.7095) + 0.111;
+         NSLog(@"DISTANCIA: %f", [[NSNumber numberWithFloat:distance]floatValue] / 3.2808);
+        return [NSNumber numberWithFloat:distance];
+    }
+}
+
+#pragma mark - Bluetooth delegate
+
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central{
+    NSString *messtoshow;
+    
+    switch (central.state) {
+        case CBCentralManagerStateUnknown:
+        {
+            messtoshow=[NSString stringWithFormat:@"State unknown, update imminent."];
+            break;
+        }
+        case CBCentralManagerStateResetting:
+        {
+            messtoshow=[NSString stringWithFormat:@"The connection with the system service was momentarily lost, update imminent."];
+            break;
+        }
+        case CBCentralManagerStateUnsupported:
+        {
+            messtoshow=[NSString stringWithFormat:@"The platform doesn't support Bluetooth Low Energy"];
+            break;
+        }
+        case CBCentralManagerStateUnauthorized:
+        {
+            messtoshow=[NSString stringWithFormat:@"The app is not authorized to use Bluetooth Low Energy"];
+            break;
+        }
+        case CBCentralManagerStatePoweredOff:
+        {
+            messtoshow=[NSString stringWithFormat:@"Bluetooth is currently powered off."];
+            NSLog(@"%@",messtoshow);
+            break;
+        }
+        case CBCentralManagerStatePoweredOn:
+        {
+            
+            messtoshow=[NSString stringWithFormat:@"Bluetooth is currently powered on and available to use."];
+            
+            [mgr scanForPeripheralsWithServices:nil options:@{ CBCentralManagerScanOptionAllowDuplicatesKey :@YES}];
+            
+            NSLog(@"%@",messtoshow);
+            break;
+            
+        }
+    }
+}
+
+- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI {
+    
+    peripheral.delegate = self;
+    NSLog(@"%@",[NSString stringWithFormat:@"%@",[advertisementData description]]);
+    NSLog(@"%@",[NSString stringWithFormat:@"Discover:%@,RSSI:%@\n",[advertisementData objectForKey:@"kCBAdvDataLocalName"],RSSI]);
+    NSLog(@"Nome %@", peripheral.name);
+    [peripheral readRSSI];
+    [self calculateDistance:RSSI];
+    [mgr  connectPeripheral:peripheral options:nil];
+}
+
+-(void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error{
+    NSLog(@"caralhoooo");
 }
 
 #pragma mark - TableView Delegate and Datasource
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    if (devices == 0) {
+        return 1;
+    }
+    return devices;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -47,52 +133,57 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [[UITableViewCell alloc]init];
+    cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
 
-#pragma mark - Bluetooth Methods
-- (IBAction)testPressed:(UIButton *)sender
-{
-
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    DetailsViewController *dt = [[DetailsViewController alloc]init];
+    [[self navigationController]pushViewController:dt animated:YES];
+    
 }
 
-- (void)testPeripheral:(LGPeripheral *)peripheral
-{
-    // First of all connecting to peripheral
-    [peripheral connectWithCompletion:^(NSError *error) {
-        // Discovering services of peripheral
-        [peripheral discoverServicesWithCompletion:^(NSArray *services, NSError *error) {
-            for (LGService *service in services) {
-                // Finding out our service
-                if ([service.UUIDString isEqualToString:@"5ec0"]) {
-                    // Discovering characteristics of our service
-                    [service discoverCharacteristicsWithCompletion:^(NSArray *characteristics, NSError *error) {
-                        // We need to count down completed operations for disconnecting
-                        __block int i = 0;
-                        for (LGCharacteristic *charact in characteristics) {
-                            // cef9 is a writabble characteristic, lets test writting
-                            if ([charact.UUIDString isEqualToString:@"cef9"]) {
-                                [charact writeByte:0xFF completion:^(NSError *error) {
-                                    if (++i == 3) {
-                                        // finnally disconnecting
-                                        [peripheral disconnectWithCompletion:nil];
-                                    }
-                                }];
-                            } else {
-                                // Other characteristics are readonly, testing read
-                                [charact readValueWithBlock:^(NSData *data, NSError *error) {
-                                    if (++i == 3) {
-                                        // finnally disconnecting
-                                        [peripheral disconnectWithCompletion:nil];
-                                    }
-                                }];
-                            }
-                        }
-                    }];
-                }
-            }
-        }];
-    }];
+- (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral{
+    int state = peripheral.state;
+    NSLog(@"Peripheral manager state =  %d", state);
+    
+    //Set the UUIDs for service and characteristic
+    CBUUID *heartRateServiceUUID = [CBUUID UUIDWithString: @"180D"];
+    CBUUID *heartRateCharacteristicUUID = [CBUUID UUIDWithString:@"2A37"];
+    CBUUID *heartRateSensorLocationCharacteristicUUID = [CBUUID UUIDWithString:@"0x2A38"];
+    
+    
+    //char heartRateData[2]; heartRateData[0] = 0; heartRateData[1] = 60;
+    
+    //Create the characteristics
+    CBMutableCharacteristic *heartRateCharacteristic =
+    [[CBMutableCharacteristic alloc] initWithType:heartRateCharacteristicUUID
+                                       properties: CBCharacteristicPropertyNotify
+                                            value:nil
+                                      permissions:CBAttributePermissionsReadable];
+    
+    CBMutableCharacteristic *heartRateSensorLocationCharacteristic =
+    [[CBMutableCharacteristic alloc] initWithType:heartRateSensorLocationCharacteristicUUID
+                                       properties:CBCharacteristicPropertyRead
+                                            value:nil
+                                      permissions:CBAttributePermissionsReadable];
+    //Create the service
+    CBMutableService *myService = [[CBMutableService alloc] initWithType:heartRateServiceUUID primary:YES];
+    myService.characteristics = @[heartRateCharacteristic, heartRateSensorLocationCharacteristic];
+    
+    //Publish the service
+    NSLog(@"Attempting to publish service...");
+    [peripheral addService:myService];
+    
+    //Set the data
+    NSDictionary *data = @{CBAdvertisementDataLocalNameKey:@"iDeviceName",
+                           CBAdvertisementDataServiceUUIDsKey:@[[CBUUID UUIDWithString:@"180D"]]};
+    
+    //Advertise the service
+    NSLog(@"Attempting to advertise service...");
+    [peripheral startAdvertising:data];
+    
 }
 
 @end

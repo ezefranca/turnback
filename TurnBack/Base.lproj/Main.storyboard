@@ -15,15 +15,15 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eGG-Ff-GUs">
-                                <rect key="frame" x="48" y="582" width="318" height="53"/>
+                                <rect key="frame" x="44" y="513" width="287" height="53"/>
                                 <animations/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="k5w-Gs-WEs">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="574"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="505"/>
                                 <animations/>
                             </imageView>
                         </subviews>
@@ -41,7 +41,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FpN-Ww-svN"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="facebookButtonFrame" destination="eGG-Ff-GUs" id="k2r-jC-tgy"/>
                     </connections>
@@ -59,11 +59,15 @@
                         <viewControllerLayoutGuide type="bottom" id="xCq-FA-otF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="shD-IC-2Vx">
-                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Dispositivosbg" translatesAutoresizingMaskIntoConstraints="NO" id="I3z-S9-bJJ">
+                                <rect key="frame" x="0.0" y="147" width="414" height="487"/>
+                                <animations/>
+                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="af1-q8-4gi">
-                                <rect key="frame" x="0.0" y="220" width="414" height="452"/>
+                                <rect key="frame" x="-4" y="220" width="383" height="383"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -71,6 +75,17 @@
                                     <outlet property="delegate" destination="XEM-Sh-jnr" id="KdR-sH-sfH"/>
                                 </connections>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LogoDispositivos" translatesAutoresizingMaskIntoConstraints="NO" id="EjD-TY-Qi4">
+                                <rect key="frame" x="90" y="8" width="194" height="103"/>
+                                <animations/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SELECIONE SEU OBJETO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="huz-cG-VdE">
+                                <rect key="frame" x="0.0" y="134" width="374" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -83,11 +98,88 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Q6J-bf-i70"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="tableView" destination="af1-q8-4gi" id="Fva-T9-6yc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dfr-SJ-Dfb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1408.125" y="1184.1549295774646"/>
+            <point key="canvasLocation" x="1408" y="1184"/>
+        </scene>
+        <!--Details View Controller-->
+        <scene sceneID="StN-cj-Xwj">
+            <objects>
+                <viewController id="UcS-ma-GSC" customClass="DetailsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dg1-C1-hkb"/>
+                        <viewControllerLayoutGuide type="bottom" id="ltw-c2-U2k"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9ji-wz-6by">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BaseObjetos" translatesAutoresizingMaskIntoConstraints="NO" id="Apd-1L-9M0">
+                                <rect key="frame" x="0.0" y="315" width="375" height="352"/>
+                                <animations/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LogoObjeto" translatesAutoresizingMaskIntoConstraints="NO" id="75h-6F-hkz">
+                                <rect key="frame" x="42" y="189" width="290" height="290"/>
+                                <animations/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chave de Casa" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHD-B2-TNZ">
+                                <rect key="frame" x="0.0" y="125" width="375" height="40"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Turnback" translatesAutoresizingMaskIntoConstraints="NO" id="URC-ns-cDX">
+                                <rect key="frame" x="67" y="28" width="240" height="63"/>
+                                <animations/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="OBJETO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bT-xz-kAG">
+                                <rect key="frame" x="146" y="99" width="82" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DISTANCIA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFz-qW-YGG">
+                                <rect key="frame" x="236" y="522" width="117" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.35686274509803922" blue="0.48627450980392156" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="500m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O06-Y2-bgV">
+                                <rect key="frame" x="197" y="551" width="158" height="69"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="53"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UUe-8e-fRF">
+                                <rect key="frame" x="33" y="612" width="36" height="36"/>
+                                <animations/>
+                                <state key="normal" backgroundImage="AlertaiconObjetos"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="RSSI" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5D2-ZU-Nwc">
+                                <rect key="frame" x="215" y="628" width="117" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.35686274509999999" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TUa-y0-cTF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1900.5" y="1183.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gM0-6k-2Y7">
@@ -131,6 +223,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AlertaiconObjetos" width="71" height="77"/>
+        <image name="BaseObjetos" width="750" height="651"/>
+        <image name="Dispositivosbg" width="750" height="924"/>
+        <image name="LogoDispositivos" width="211" height="211"/>
+        <image name="LogoObjeto" width="571" height="571"/>
+        <image name="Turnback" width="377" height="40"/>
         <image name="background" width="320" height="568"/>
     </resources>
 </document>
